@@ -63,7 +63,10 @@ function Overlay({ isOpen, onClose, submission }) {
   }, []);
 
   const getModalClasses = () => {
-    const baseClasses = "fixed bottom-0 w-3/4 h-[72vh] lg:h-[93.75vh] bg-white rounded-t-2xl shadow-2xl transition-transform duration-[600ms] ease-in-out overflow-hidden";
+    // Use different heights for mobile vs desktop
+    const mobileHeight = "h-[72vh]";
+    const desktopHeight = "h-[93.75vh]";
+    const baseClasses = `fixed bottom-0 w-3/4 ${mobileHeight} lg:${desktopHeight} bg-white rounded-t-2xl shadow-2xl transition-transform duration-[600ms] ease-in-out overflow-hidden`;
     const animationClasses = isOpen ? 'translate-y-0' : 'translate-y-full';
     
     if (isMobile || isDesktopSplit2) {
@@ -271,16 +274,26 @@ export default function App() {
   // Prevent background scrolling when modal is open
   useEffect(() => {
     if (isOverlayOpen) {
-      // Prevent scrolling on the body
+      // Prevent scrolling on the body and html
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      // Prevent touch scrolling on mobile
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
     } else {
       // Restore scrolling when modal is closed
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
+      document.body.style.position = 'unset';
+      document.body.style.width = 'unset';
     }
 
     // Cleanup function to restore scrolling when component unmounts
     return () => {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
+      document.body.style.position = 'unset';
+      document.body.style.width = 'unset';
     };
   }, [isOverlayOpen]);
 
