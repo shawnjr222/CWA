@@ -64,7 +64,7 @@ function Overlay({ isOpen, onClose, submission }) {
 
   const getModalClasses = () => {
     // Use different heights for mobile vs desktop
-    const mobileHeight = "h-[72vh]";
+    const mobileHeight = "h-[64vh]";
     const desktopHeight = "h-[93.75vh]";
     const baseClasses = `fixed bottom-0 w-3/4 ${mobileHeight} lg:${desktopHeight} bg-white rounded-t-2xl shadow-2xl transition-transform duration-[600ms] ease-in-out overflow-hidden`;
     const animationClasses = isOpen ? 'translate-y-0' : 'translate-y-full';
@@ -271,15 +271,37 @@ export default function App() {
       // Prevent scrolling on the body and html
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
-      // Prevent touch scrolling on mobile
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
+      
+      // Enhanced mobile scroll prevention
+      if (isMobile) {
+        // Store current scroll position for mobile
+        const scrollY = window.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100%';
+        document.body.style.height = '100%';
+        // Prevent iOS bounce scrolling
+        document.body.style.webkitOverflowScrolling = 'touch';
+      } else {
+        // For desktop, use simpler approach
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+      }
     } else {
       // Restore scrolling when modal is closed
       document.body.style.overflow = 'unset';
       document.documentElement.style.overflow = 'unset';
       document.body.style.position = 'unset';
+      document.body.style.top = 'unset';
       document.body.style.width = 'unset';
+      document.body.style.height = 'unset';
+      document.body.style.webkitOverflowScrolling = 'unset';
+      
+      // Restore scroll position on mobile
+      if (isMobile) {
+        const scrollY = document.body.style.top;
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     }
 
     // Cleanup function to restore scrolling when component unmounts
@@ -287,9 +309,12 @@ export default function App() {
       document.body.style.overflow = 'unset';
       document.documentElement.style.overflow = 'unset';
       document.body.style.position = 'unset';
+      document.body.style.top = 'unset';
       document.body.style.width = 'unset';
+      document.body.style.height = 'unset';
+      document.body.style.webkitOverflowScrolling = 'unset';
     };
-  }, [isOverlayOpen]);
+  }, [isOverlayOpen, isMobile]);
 
   return (
     <div className="min-h-screen bg-white">
