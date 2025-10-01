@@ -138,13 +138,16 @@ async function discoverSubmissionFolders() {
   return validFolders.sort((a, b) => b.localeCompare(a));
 }
 
-// Function to load submissions from folder
-async function loadSubmissions() {
+// Function to load submissions from folder with pagination
+async function loadSubmissions(offset = 0, limit = null) {
   // Dynamically discover submission folders
   const submissionFolders = await discoverSubmissionFolders();
+  
+  // Apply pagination if limit is specified
+  const foldersToProcess = limit ? submissionFolders.slice(offset, offset + limit) : submissionFolders.slice(offset);
 
   const submissions = await Promise.all(
-    submissionFolders.map(async (folder, index) => {
+    foldersToProcess.map(async (folder, index) => {
       // Check if metadata.txt exists
       const metadataPath = `/submissions/${folder}/metadata.txt`;
       const metadataExists = await validateMetadataExists(metadataPath);
@@ -253,6 +256,12 @@ async function loadSubmissions() {
 
   // Filter out null submissions (missing files)
   return submissions.filter(submission => submission !== null);
+}
+
+// Function to get total count of submissions
+async function getTotalSubmissionCount() {
+  const submissionFolders = await discoverSubmissionFolders();
+  return submissionFolders.length;
 }
 
 // Parse metadata from actual metadata.txt files
@@ -367,19 +376,77 @@ async function generateVideoThumbnail(videoPath) {
 // Main Submissions Component
 function Submissions({ onSubmissionClick }) {
   const [submissions, setSubmissions] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [hasMore, setHasMore] = React.useState(true);
+  const [totalCount, setTotalCount] = React.useState(0);
+  const [loadedCount, setLoadedCount] = React.useState(0);
+  const loadMoreRef = React.useRef(null);
 
+  // Load initial 6 submissions
   React.useEffect(() => {
-    const loadData = async () => {
+    const loadInitialData = async () => {
       try {
-        const data = await loadSubmissions();
+        setLoading(true);
+        const [data, total] = await Promise.all([
+          loadSubmissions(0, 6),
+          getTotalSubmissionCount()
+        ]);
         setSubmissions(data);
+        setTotalCount(total);
+        setLoadedCount(data.length);
+        setHasMore(data.length < total);
       } catch (error) {
-        console.error('Error loading submissions:', error);
+        console.error('Error loading initial submissions:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
-    loadData();
+    loadInitialData();
   }, []);
+
+  // Load more submissions when user scrolls to bottom
+  const loadMoreSubmissions = React.useCallback(async () => {
+    if (loading || !hasMore) return;
+
+    try {
+      setLoading(true);
+      const newSubmissions = await loadSubmissions(loadedCount, 6);
+      if (newSubmissions.length > 0) {
+        setSubmissions(prev => [...prev, ...newSubmissions]);
+        setLoadedCount(prev => prev + newSubmissions.length);
+        setHasMore(loadedCount + newSubmissions.length < totalCount);
+      } else {
+        setHasMore(false);
+      }
+    } catch (error) {
+      console.error('Error loading more submissions:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [loading, hasMore, loadedCount, totalCount]);
+
+  // Intersection Observer for lazy loading
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore && !loading) {
+          loadMoreSubmissions();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => {
+      if (loadMoreRef.current) {
+        observer.unobserve(loadMoreRef.current);
+      }
+    };
+  }, [loadMoreSubmissions, hasMore, loading]);
 
   return (
     <div className="mobile:px-6 desktop-split-2:px-12 tablet:px-16 pl-[88px] pr-[88px]">
@@ -400,6 +467,34 @@ function Submissions({ onSubmissionClick }) {
             />
           </div>
         ))}
+        
+        {/* Loading indicator and load more trigger */}
+        {hasMore && (
+          <div 
+            ref={loadMoreRef}
+            className="w-full flex justify-center items-center py-8"
+          >
+            {loading ? (
+              <div className="flex items-center space-x-2">
+                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900"></div>
+                <span className="text-gray-600 font-light">Loading more submissions...</span>
+              </div>
+            ) : (
+              <div className="text-gray-400 text-sm font-light">
+                Scroll to load more
+              </div>
+            )}
+          </div>
+        )}
+        
+        {/* End of submissions message */}
+        {!hasMore && submissions.length > 0 && (
+          <div className="w-full flex justify-center items-center py-8">
+            <div className="text-gray-400 text-sm font-light">
+              You've reached the end of submissions
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
