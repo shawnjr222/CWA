@@ -82,7 +82,7 @@ function SubmissionItem({ submission, onSubmissionClick }) {
 
   return (
     <div 
-      className="mobile:w-full desktop-split-2:w-full tablet:w-[calc(33.333%-20px)] cursor-pointer"
+      className="mobile:w-full desktop-split-2:w-full tablet:w-full cursor-pointer"
       onClick={() => onSubmissionClick(submission)}
     >
       {/* Media with smaller aspect ratio for 3x3 grid */}
