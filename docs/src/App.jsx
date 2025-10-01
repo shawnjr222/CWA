@@ -316,7 +316,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="mobile:px-6 mobile:pt-16 desktop-split-2:px-12 desktop-split-2:pt-20 tablet:px-16 tablet:pt-24 pl-[88px] pt-[44px]">
+      <div className="mobile:px-6 mobile:pt-16 desktop-split-2:px-12 desktop-split-2:pt-20 tablet:px-0 tablet:pt-24 pl-[88px] pt-[44px]">
         <Header />
       </div>
       

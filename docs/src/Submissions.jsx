@@ -476,7 +476,7 @@ function Submissions({ onSubmissionClick }) {
   }, [loadMoreSubmissions, hasMore, loading]);
 
   return (
-    <div className="mobile:px-6 desktop-split-2:px-12 tablet:px-16 pl-[88px] pr-[88px]">
+    <div className="mobile:px-6 desktop-split-2:px-12 tablet:px-0 pl-[88px] pr-[88px]">
       <div className="mobile:flex mobile:flex-col mobile:space-y-6 desktop-split-2:flex desktop-split-2:flex-col desktop-split-2:space-y-8 tablet:flex tablet:flex-wrap flex flex-wrap">
         {submissions.map((submission, index) => (
           <div 
