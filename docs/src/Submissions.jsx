@@ -239,18 +239,27 @@ async function loadSubmissions(offset = 0, limit = null) {
         return null; // Skip if no artwork file found
       }
       
-      // Check for additional images
+      // Check for additional images (only if this is an image submission)
       const additionalImages = [];
       let hasAdditionalImages = false;
       
-      if (mediaType !== 'video' && mediaType !== 'audio') {
+      if (mediaType === 'image') {
         // Only check for additional images for image submissions
-        for (let i = 1; i <= 5; i++) {
-          const additionalImagePath = `/submissions/${folder}/image${i}.jpg`;
-          const imageExists = await validateFileExists(additionalImagePath);
-          if (imageExists) {
-            additionalImages.push(additionalImagePath);
-            hasAdditionalImages = true;
+        // First check if image1.jpg exists - if not, skip the rest
+        const firstImagePath = `/submissions/${folder}/image1.jpg`;
+        const firstImageExists = await validateFileExists(firstImagePath);
+        
+        if (firstImageExists) {
+          additionalImages.push(firstImagePath);
+          hasAdditionalImages = true;
+          
+          // Check for remaining images
+          for (let i = 2; i <= 5; i++) {
+            const additionalImagePath = `/submissions/${folder}/image${i}.jpg`;
+            const imageExists = await validateFileExists(additionalImagePath);
+            if (imageExists) {
+              additionalImages.push(additionalImagePath);
+            }
           }
         }
       }
