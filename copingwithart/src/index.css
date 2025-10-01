@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Cutive Mono';
+  src: url('../fonts/Barlow,Cutive_Mono/Cutive_Mono/CutiveMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Cutive Mono', monospace;
+  margin: 0;
+  background-color: white;
+  color: #222;
+}
+
+/* Hide scrollbar for modal only */
+.modal-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
