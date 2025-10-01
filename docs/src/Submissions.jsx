@@ -481,11 +481,11 @@ function Submissions({ onSubmissionClick }) {
         {submissions.map((submission, index) => (
           <div 
             key={submission.id}
-            className="mobile:w-full mobile:mr-0 mobile:mb-0 desktop-split-2:w-full desktop-split-2:mr-0 desktop-split-2:mb-0 tablet:w-[calc(33.333%-20px)] tablet:mr-5 tablet:mb-5 w-[calc(33.333%-16px)] mr-6 mb-6"
+            className="mobile:w-full mobile:mr-0 mobile:mb-0 desktop-split-2:w-full desktop-split-2:mr-0 desktop-split-2:mb-0 tablet:w-full tablet:mr-0 tablet:mb-0 w-[calc(33.333%-16px)] mr-6 mb-6"
             style={{ 
-              width: window.innerWidth <= 1039 ? '100%' : window.innerWidth <= 1366 ? 'calc(33.333% - 20px)' : 'calc(33.333% - 16px)',
-              marginRight: window.innerWidth <= 1039 ? '0' : window.innerWidth <= 1366 ? (index % 3 === 2 ? '0' : '20px') : (index % 3 === 2 ? '0' : '24px'),
-              marginBottom: window.innerWidth <= 1039 ? '0' : window.innerWidth <= 1366 ? '20px' : '24px'
+              width: window.innerWidth <= 1366 ? '100%' : 'calc(33.333% - 16px)',
+              marginRight: window.innerWidth <= 1366 ? '0' : (index % 3 === 2 ? '0' : '24px'),
+              marginBottom: window.innerWidth <= 1366 ? '0' : '24px'
             }}
           >
             <SubmissionItem
