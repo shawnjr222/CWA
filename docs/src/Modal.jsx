@@ -30,7 +30,7 @@ function Modal({ isOpen, onClose, submission }) {
       />
       
       {/* Modal Content */}
-      <div className="relative bg-white rounded-lg shadow-xl max-w-4xl max-h-[90vh] w-full mx-4 overflow-hidden">
+      <div className="relative bg-white rounded-lg shadow-xl max-w-4xl max-h-[72vh] lg:max-h-[90vh] w-full mx-4 overflow-hidden">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -43,7 +43,7 @@ function Modal({ isOpen, onClose, submission }) {
         </button>
 
         {/* Scrollable Content */}
-        <div className="modal-scrollbar overflow-y-auto max-h-[90vh]">
+        <div className="modal-scrollbar overflow-y-auto max-h-[72vh] lg:max-h-[90vh]">
           <div className="flex flex-col lg:flex-row">
             {/* Image Section */}
             <div className="lg:w-1/2">
