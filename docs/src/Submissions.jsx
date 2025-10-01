@@ -239,6 +239,22 @@ async function loadSubmissions(offset = 0, limit = null) {
         return null; // Skip if no artwork file found
       }
       
+      // Check for additional images
+      const additionalImages = [];
+      let hasAdditionalImages = false;
+      
+      if (mediaType !== 'video' && mediaType !== 'audio') {
+        // Only check for additional images for image submissions
+        for (let i = 1; i <= 5; i++) {
+          const additionalImagePath = `/submissions/${folder}/image${i}.jpg`;
+          const imageExists = await validateFileExists(additionalImagePath);
+          if (imageExists) {
+            additionalImages.push(additionalImagePath);
+            hasAdditionalImages = true;
+          }
+        }
+      }
+
       return {
         id: parseInt(folder),
         title: metadata?.title || 'Untitled',
@@ -249,7 +265,9 @@ async function loadSubmissions(offset = 0, limit = null) {
         image: thumbnailPath, // For backward compatibility
         imageExists: imageExists,
         metadata: metadata,
-        folder: folder
+        folder: folder,
+        additionalImages: additionalImages,
+        hasAdditionalImages: hasAdditionalImages
       };
     })
   );

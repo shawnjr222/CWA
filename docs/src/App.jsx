@@ -147,6 +147,22 @@ function Overlay({ isOpen, onClose, submission }) {
                      </div>
                    )}
             
+                   {/* Additional Images - Only show if there are additional images */}
+                   {submission?.folder && submission.id !== 1 && submission.hasAdditionalImages && (
+                     <div className="mobile:mx-6 mobile:mt-6 desktop-split-2:mx-12 desktop-split-2:mt-8 mx-12 mt-8 tablet:mx-16 tablet:mt-10 mx-[140px] mt-8">
+                       <div className="space-y-8">
+                         {submission.additionalImages.map((imagePath, index) => (
+                           <div key={index} className="aspect-[4/3] overflow-hidden rounded-2xl">
+                             <img 
+                               src={imagePath} 
+                               alt={`${submission?.title || 'Artwork'} - Image ${index + 1}`}
+                               className="w-full h-full object-cover"
+                             />
+                           </div>
+                         ))}
+                       </div>
+                     </div>
+                   )}
             
                    {/* Modal content */}
                    <div className="mobile:mx-6 mobile:px-0 mobile:pt-4 mobile:pb-6 desktop-split-2:mx-12 desktop-split-2:px-0 desktop-split-2:pt-6 desktop-split-2:pb-8 mx-12 px-0 pt-6 pb-8 tablet:mx-16 tablet:px-0 tablet:pt-8 tablet:pb-10 mx-[140px] px-0 pt-8 pb-8">
