@@ -63,7 +63,7 @@ function Overlay({ isOpen, onClose, submission }) {
   }, []);
 
   const getModalClasses = () => {
-    const baseClasses = "fixed bottom-0 w-3/4 h-[93.75vh] bg-white rounded-t-2xl shadow-2xl transition-transform duration-[600ms] ease-in-out overflow-hidden";
+    const baseClasses = "fixed bottom-0 w-3/4 h-[72vh] lg:h-[93.75vh] bg-white rounded-t-2xl shadow-2xl transition-transform duration-[600ms] ease-in-out overflow-hidden";
     const animationClasses = isOpen ? 'translate-y-0' : 'translate-y-full';
     
     if (isMobile || isDesktopSplit2) {
