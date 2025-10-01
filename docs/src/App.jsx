@@ -16,9 +16,7 @@ function Header() {
       
       <div className="mobile:mb-2 desktop-split-2:mb-6 tablet:mb-8 mb-4">
         <p className="mobile:mb-2 mobile:text-sm desktop-split-2:text-base tablet:text-lg tablet:mb-8 mb-4 text-gray-900 text-base leading-tight font-light">
-          This gallery is a space for art made not to produce, but to survive.
-          Each work reflects moments of solitude, reflection, resilience, and renewal.
-          It is a place to honor the act of creating as a form of self-regulation.
+          This gallery is a space for art made as a form of self-regulation. For creations born in solitude, when we needed something to hold us together. It is a space to honor what was made not to produce, but to survive.
         </p>
       </div>
       
