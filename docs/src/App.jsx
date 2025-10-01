@@ -148,7 +148,7 @@ function Overlay({ isOpen, onClose, submission }) {
                    )}
             
                    {/* Additional Images - Only show if there are additional images */}
-                   {submission?.folder && submission.id !== 1 && submission.hasAdditionalImages && (
+                   {submission?.folder && submission.hasAdditionalImages && (
                      <div className="mobile:mx-6 mobile:mt-6 desktop-split-2:mx-12 desktop-split-2:mt-8 mx-12 mt-8 tablet:mx-16 tablet:mt-10 mx-[140px] mt-8">
                        <div className="space-y-8">
                          {submission.additionalImages.map((imagePath, index) => (
