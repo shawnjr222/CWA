@@ -193,6 +193,12 @@ async function loadSubmissions(offset = 0, limit = null) {
             break;
           }
         }
+      } else if (mediaType === 'writing') {
+        // For writing, look for artwork.jpg as the thumbnail
+        const testPath = `/submissions/${folder}/artwork.jpg`;
+        if (await validateFileExists(testPath)) {
+          artworkPath = testPath;
+        }
       } else {
         // For images, look for image file
         const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
@@ -231,6 +237,9 @@ async function loadSubmissions(offset = 0, limit = null) {
             // Fallback to no thumbnail (will show waveform)
             thumbnailPath = null;
           }
+        } else if (mediaType === 'writing') {
+          // For writing, use artwork.jpg as thumbnail
+          thumbnailPath = artworkPath;
         } else {
           // For images, use the image itself as thumbnail
           thumbnailPath = artworkPath;

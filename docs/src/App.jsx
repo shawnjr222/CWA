@@ -135,6 +135,14 @@ function Overlay({ isOpen, onClose, submission }) {
                              </audio>
                            </div>
                          </div>
+                       ) : submission.type === 'writing' ? (
+                         <div className="w-full h-full bg-white p-8 overflow-y-auto">
+                           <div className="prose prose-lg max-w-none">
+                             <pre className="whitespace-pre-wrap font-sans text-gray-800 leading-relaxed">
+                               {submission.metadata?.writing || 'No writing content available.'}
+                             </pre>
+                           </div>
+                         </div>
                        ) : (
                          <img 
                            src={submission.image} 
