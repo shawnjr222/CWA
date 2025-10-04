@@ -9,4 +9,11 @@ export default defineConfig({
     assetsDir: 'assets',
   },
   base: './', // Use relative paths for GitHub Pages
+  server: {
+    // Serve the submissions folder in development
+    fs: {
+      allow: ['..']
+    }
+  },
+  publicDir: 'public'
 })

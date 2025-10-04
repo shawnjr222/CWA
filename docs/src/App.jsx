@@ -62,15 +62,14 @@ function Overlay({ isOpen, onClose, submission }) {
 
   const getModalClasses = () => {
     // Use different heights for mobile vs desktop
-    const mobileHeight = "h-[64vh]";
-    const desktopHeight = "h-[93.75vh]";
-    const baseClasses = `fixed bottom-0 w-3/4 ${mobileHeight} lg:${desktopHeight} bg-white rounded-t-2xl shadow-2xl transition-transform duration-[600ms] ease-in-out overflow-hidden`;
+    const mobileHeight = "h-[75vh]";
+    const desktopHeight = "h-[95vh]";
     const animationClasses = isOpen ? 'translate-y-0' : 'translate-y-full';
     
     if (isMobile || isDesktopSplit2) {
-      return `${baseClasses} mobile:w-full mobile:left-0 mobile:right-0 desktop-split-2:w-full desktop-split-2:left-0 desktop-split-2:right-0 ${animationClasses}`;
+      return `fixed bottom-0 w-full left-0 right-0 ${mobileHeight} bg-white rounded-t-2xl shadow-2xl transition-transform duration-[600ms] ease-in-out overflow-hidden ${animationClasses}`;
     } else {
-      return `${baseClasses} left-1/2 transform -translate-x-1/2 ${animationClasses}`;
+      return `fixed bottom-0 w-3/4 left-1/2 transform -translate-x-1/2 ${desktopHeight} bg-white rounded-t-2xl shadow-2xl transition-transform duration-[600ms] ease-in-out overflow-hidden ${animationClasses}`;
     }
   };
 
@@ -240,6 +239,20 @@ function Overlay({ isOpen, onClose, submission }) {
 export default function App() {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [selectedSubmission, setSelectedSubmission] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Mobile detection
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width <= 768);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   const handleSubmissionClick = (submission) => {
     setSelectedSubmission(submission);
@@ -324,7 +337,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="mobile:px-6 mobile:pt-16 desktop-split-2:px-12 desktop-split-2:pt-20 tablet:px-0 tablet:pt-24 pl-[88px] pt-[44px]">
+      <div className="mobile:px-6 mobile:pt-16 desktop-split-2:px-12 desktop-split-2:pt-20 tablet:px-[88px] tablet:pt-24 pl-[88px] pt-[44px]">
         <Header />
       </div>
       
