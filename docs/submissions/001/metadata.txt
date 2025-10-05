@@ -1,6 +1,6 @@
-title: "They Remember"
-artist: "Christopher Richard"
+title: They Remember
+artist: Christopher Richard
 date_submitted: "2025-09-18"
 medium: "image"
 dimensions: "1920x1080"
-description: "Strategic nuclear weapon designed to get a chuckle out of a coworker."
+description: Strategic nuclear weapon designed to get a chuckle out of a coworker.
