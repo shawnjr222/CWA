@@ -1,5 +1,5 @@
-title: "LOST - Becoming a Mother in the Deep Pandemic"
-artist: "Sarah"
+title: LOST - Becoming a Mother in the Deep Pandemic
+artist: Sarah
 date_submitted: "2025-10-01"
 medium: "image"
 dimensions: "1920x1080"
