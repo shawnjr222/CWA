@@ -93,22 +93,12 @@ function Modal({ isOpen, onClose, submission }) {
                   </div>
                 )}
 
-                {/* Description */}
+                {/* Description/Artist Statement */}
                 {submission.metadata?.description && (
-                  <div>
-                    <span className="font-mono text-sm text-gray-500 uppercase tracking-wide">Description</span>
-                    <p className="font-mono text-gray-900 mt-1 leading-relaxed">
-                      {submission.metadata.description}
-                    </p>
-                  </div>
-                )}
-
-                {/* Artist Statement */}
-                {submission.metadata?.statement && (
                   <div>
                     <span className="font-mono text-sm text-gray-500 uppercase tracking-wide">Artist Statement</span>
                     <p className="font-mono text-gray-900 mt-1 leading-relaxed">
-                      {submission.metadata.statement}
+                      {submission.metadata.description}
                     </p>
                     {/* Copyright */}
                     <p className="font-mono text-xs text-gray-400 mt-3">
