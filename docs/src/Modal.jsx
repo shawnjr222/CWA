@@ -110,6 +110,10 @@ function Modal({ isOpen, onClose, submission }) {
                     <p className="font-mono text-gray-900 mt-1 leading-relaxed">
                       {submission.metadata.statement}
                     </p>
+                    {/* Copyright */}
+                    <p className="font-mono text-xs text-gray-400 mt-3">
+                      © {new Date().getFullYear()} {submission.artist}. All rights reserved.
+                    </p>
                   </div>
                 )}
 
