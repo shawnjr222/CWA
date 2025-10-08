@@ -22,5 +22,26 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Add copyright to modal after page loads
+      setTimeout(() => {
+        const observer = new MutationObserver(() => {
+          const modals = document.querySelectorAll('[class*="fixed"][class*="inset-0"]');
+          modals.forEach(modal => {
+            const content = modal.querySelector('[class*="mx-12"]');
+            if (content && !content.querySelector('.copyright-added')) {
+              const description = content.querySelector('p[class*="text-gray-700"]');
+              if (description) {
+                const copyright = document.createElement('p');
+                copyright.className = 'mobile:text-sm desktop-split-2:text-base text-base tablet:text-lg text-base font-light text-gray-700 leading-relaxed copyright-added';
+                copyright.textContent = '© 2025 Copyright Test';
+                description.parentNode.insertBefore(copyright, description.nextSibling);
+              }
+            }
+          });
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+      }, 1000);
+    </script>
   </body>
 </html>
