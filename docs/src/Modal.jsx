@@ -102,7 +102,7 @@ function Modal({ isOpen, onClose, submission }) {
                     </p>
                     {/* Copyright */}
                     <p className="font-mono text-xs text-gray-400 mt-3">
-                      © {new Date().getFullYear()} {submission.artist}. All rights reserved.
+                    {submission.metadata.copyright}
                     </p>
                   </div>
                 )}
@@ -117,7 +117,7 @@ function Modal({ isOpen, onClose, submission }) {
                       rel="noopener noreferrer"
                       className="font-mono text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200"
                     >
-                      Visit Artist Website →
+                      Learn more
                     </a>
                   </div>
                 )}
