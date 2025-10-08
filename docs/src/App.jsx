@@ -178,7 +178,7 @@ function Overlay({ isOpen, onClose, submission }) {
                        by {submission?.artist || 'Unknown Artist'}
                      </p>
                      
-                     {/* Artist Statement */}
+                     {/* Artist Statement (Description) */}
                      {submission?.metadata?.description && (
                        <div className="mobile:mb-0 desktop-split-2:mb-2 mb-2 tablet:mb-4 mb-6">
                          <p className="mobile:text-sm desktop-split-2:text-base text-base tablet:text-lg text-base font-light text-gray-700 leading-relaxed">
@@ -186,13 +186,11 @@ function Overlay({ isOpen, onClose, submission }) {
                          </p>
                        </div>
                      )}
-                     
-                     {/* Copyright */}
-                     <div className="mobile:mb-0 desktop-split-2:mb-2 mb-2 tablet:mb-4 mb-6">
-                       <p className="mobile:text-xs desktop-split-2:text-sm text-sm tablet:text-base text-sm font-light text-gray-400">
-                         © {new Date().getFullYear()} {submission?.artist || 'Unknown Artist'}. All rights reserved.
-                       </p>
-                     </div>
+
+                     {submission?.metadata?.copyright && (
+                       <p className="text-sm text-gray-500 mb-4">{submission.metadata.copyright}</p>
+                     )}
+
                      
                      
                      {/* Desktop Learn More Button - inside content */}
