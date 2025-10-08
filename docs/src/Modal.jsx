@@ -63,8 +63,14 @@ function Modal({ isOpen, onClose, submission }) {
                     {submission.title}
                   </h2>
                   <p className="text-lg font-mono text-gray-600">
-                    by {submission.artist} © 2025 All rights reserved
+                    by {submission.artist} © <span id="currentYear"></span> all rights reserved
                   </p>
+                  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var currentYear = new Date().getFullYear();
+        document.getElementById('currentYear').textContent = currentYear;
+    });
+</script>
                 </div>
 
                 {/* Metadata */}
