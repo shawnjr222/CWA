@@ -100,13 +100,19 @@ function Modal({ isOpen, onClose, submission }) {
                     <p className="font-mono text-gray-900 mt-1 leading-relaxed">
                       {submission.metadata.description}
                     </p>
-                    {/* Copyright */}
-                    <p className="font-mono text-xs text-gray-400 mt-3">
-                    {submission.metadata.copyright}
-                    </p>
+                   
                   </div>
                 )}
 
+                 {/* Copyright */}
+                 {submission.metadata?.copyright && (
+                 <div>
+                  <span className="font-mono text-sm text-gray-500 uppercase tracking-wide">Copyright</span>
+                 <p className="font-mono text-gray-900 mt-1 leading-relaxed">
+                    {submission.metadata.copyright}
+                    </p>
+                    </div>
+                       )}
 
                 {/* Website Link */}
                 {submission.metadata?.website && (
