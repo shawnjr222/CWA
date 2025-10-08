@@ -63,7 +63,7 @@ function Modal({ isOpen, onClose, submission }) {
                     {submission.title}
                   </h2>
                   <p className="text-lg font-mono text-gray-600">
-                    by {submission.artist} © {new Date().getFullYear()} all rights reserved
+                    by {submission.artist}
                   </p>
                 </div>
 

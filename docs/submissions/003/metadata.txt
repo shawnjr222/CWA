@@ -1,6 +1,5 @@
 title: LOST - Becoming a Mother in the Deep Pandemic
-artist: Sarah 
-artist2: Sarah © 2025 all rights reserved
+artist: Sarah © 2025 
 date_submitted: "2025-10-01"
 medium: "image"
 dimensions: "1920x1080"

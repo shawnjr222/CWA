@@ -175,7 +175,7 @@ function Overlay({ isOpen, onClose, submission }) {
                        {submission?.title || 'Untitled'}
                      </h2>
                      <p className="mobile:text-base mobile:mb-3 desktop-split-2:text-lg desktop-split-2:mb-4 text-lg mb-4 tablet:text-xl tablet:mb-6 text-lg font-light text-gray-600 mb-4">
-                       by {submission?.artist || 'Unknown Artist'} © {new Date().getFullYear()} all rights reserved
+                       by {submission?.artist || 'Unknown Artist'}
                      </p>
                      
                      {/* Artist Statement (Description) */}
