@@ -188,13 +188,12 @@ function Overlay({ isOpen, onClose, submission }) {
                      )}
                      
                      {/* Copyright */}
-                     {submission?.metadata?.email && (
-                       <div className="mobile:mt-4 mobile:mb-1 desktop-split-2:mt-4 desktop-split-2:mb-1 tablet:mt-4 tablet:mb-1 mt-4 mb-8">
-                         <p className="mobile:text-xs desktop-split-2:text-sm text-sm tablet:text-sm text-sm font-light text-black/50 leading-relaxed">
-                           © {new Date().getFullYear()} {submission?.artist || 'Unknown Artist'}
-                         </p>
-                       </div>
-                     )}
+                     <div className="mobile:mb-0 desktop-split-2:mb-2 mb-2 tablet:mb-4 mb-6">
+                       <p className="mobile:text-xs desktop-split-2:text-sm text-sm tablet:text-base text-sm font-light text-gray-400">
+                         © {new Date().getFullYear()} {submission?.artist || 'Unknown Artist'}. All rights reserved.
+                       </p>
+                     </div>
+                     
                      
                      {/* Desktop Learn More Button - inside content */}
                      {submission?.metadata?.learn && (
