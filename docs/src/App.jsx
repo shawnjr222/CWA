@@ -188,7 +188,7 @@ function Overlay({ isOpen, onClose, submission }) {
                      )}
 
                      {submission?.metadata?.copyright && (
-                       <p className="text-sm text-gray-500 mb-4">{submission.metadata.copyright}</p>
+                       <p className="mobile:text-sm desktop-split-2:text-base text-base tablet:text-lg text-base font-light text-gray-700 leading-relaxed">{submission.metadata.copyright}</p>
                      )}
 
                      
