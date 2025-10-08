@@ -36,10 +36,11 @@
                 const artistElement = content.querySelector('p[class*="text-gray-600"]');
                 const artistName = artistElement ? artistElement.textContent.replace('by ', '') : 'Unknown Artist';
                 
-                // Create copyright with actual artist name
+                // Create copyright with actual artist name and current year
+                const currentYear = new Date().getFullYear();
                 const copyright = document.createElement('p');
                 copyright.className = 'mobile:text-sm desktop-split-2:text-base text-base tablet:text-lg text-base font-light text-gray-700 leading-relaxed copyright-added';
-                copyright.textContent = `© 2025 ${artistName}. All rights reserved.`;
+                copyright.textContent = `© ${currentYear} ${artistName}. All rights reserved.`;
                 description.parentNode.insertBefore(copyright, description.nextSibling);
               }
             }
