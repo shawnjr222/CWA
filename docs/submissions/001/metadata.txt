@@ -1,5 +1,6 @@
 title: They Remember
-artist: Christopher Richard © 2025 All rights reserved
+artist: Christopher Richard
+artist2: Christopher Richard © 2025 All rights reserved
 date_submitted: "2025-09-18"
 medium: "image"
 dimensions: "1920x1080"

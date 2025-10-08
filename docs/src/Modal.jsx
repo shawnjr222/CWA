@@ -63,7 +63,7 @@ function Modal({ isOpen, onClose, submission }) {
                     {submission.title}
                   </h2>
                   <p className="text-lg font-mono text-gray-600">
-                    by {submission.artist}
+                    by {submission.artist2}
                   </p>
                 </div>
 

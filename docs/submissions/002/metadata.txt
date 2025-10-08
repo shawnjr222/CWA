@@ -1,5 +1,6 @@
 title: Through different Lens
-artist: Salma Haridy © 2025 All rights reserved
+artist: Salma Haridy
+artist2: Salma Haridy © 2025 All rights reserved
 date_submitted: "2025-09-25"
 medium: "image"
 dimensions: "1920x1080"

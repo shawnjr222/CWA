@@ -59,6 +59,7 @@ function Submissions({ onSubmissionClick }) {
               id: parseInt(folder),
               title: metadata.title || 'Untitled',
               artist: metadata.artist || 'Unknown Artist',
+              artist2: metadata.artist2 || 'Unknown Artist',
               copyright: metadata.copyright || '',
               type: 'image',
               media: `/submissions/${folder}/artwork.jpg`,
