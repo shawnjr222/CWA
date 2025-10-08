@@ -11,14 +11,14 @@
       gtag('config', 'G-JQ8RFZ61VC');
     </script>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="./assets/fav-7jNwXFJ6.png" />
+    <link rel="icon" type="image/png" href="./assets/fav-7jNwXFJ6-B_SY1GJM.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="mobile-web-app-capable" content="yes" />
     <title>Coping with Art</title>
-    <script type="module" crossorigin src="./assets/index-BIK5JV98.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-X7LbzdyI.css">
+    <script type="module" crossorigin src="./assets/index-CcBelV4S.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-tn0RQdqM.css">
   </head>
   <body>
     <div id="root"></div>
@@ -36,11 +36,10 @@
                 const artistElement = content.querySelector('p[class*="text-gray-600"]');
                 const artistName = artistElement ? artistElement.textContent.replace('by ', '') : 'Unknown Artist';
                 
-                // Create copyright with actual artist name and current year
-                const currentYear = new Date().getFullYear();
+                // Create copyright with actual artist name
                 const copyright = document.createElement('p');
                 copyright.className = 'mobile:text-sm desktop-split-2:text-base text-base tablet:text-lg text-base font-light text-gray-700 leading-relaxed copyright-added';
-                copyright.textContent = `© ${currentYear} ${artistName}. All rights reserved.`;
+                copyright.textContent = `© 2025 ${artistName}. All rights reserved.`;
                 description.parentNode.insertBefore(copyright, description.nextSibling);
               }
             }
