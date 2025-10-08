@@ -5,3 +5,5 @@ medium: "image"
 dimensions: "1920x1080"
 description: My painting reflects how reality and truth shift with perspective. What we see or hear is never the whole story, there are always hidden parts, unseen angles, and layers of light and shadow. Just as people carry both beauty and flaws within them, situations and relationships reveal different faces depending on where we stand. Sometimes, stepping back allows us to glimpse what lies beyond the frame.
 learn:https://www.instagram.com/p/C-hwY_FNni5/?igsh=MTk5YXloOGFmdmNzbw%3D%3D
+copyright: © Salma Haridy 2025 All rights reserved
+void:

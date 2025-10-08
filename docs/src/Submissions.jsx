@@ -40,16 +40,19 @@ function Submissions({ onSubmissionClick }) {
           if (response.ok) {
             const text = await response.text();
             
-            // Parse metadata
-    const metadata = {};
-            text.split('\n').forEach(line => {
-      const colonIndex = line.indexOf(':');
-      if (colonIndex > 0) {
-        const key = line.substring(0, colonIndex).trim();
+            // Parse metadata - more robust parsing
+            const metadata = {};
+            const lines = text.split('\n').filter(line => line.trim() !== '');
+            lines.forEach(line => {
+              const colonIndex = line.indexOf(':');
+              if (colonIndex > 0) {
+                const key = line.substring(0, colonIndex).trim();
                 const value = line.substring(colonIndex + 1).trim();
-        metadata[key] = value;
-      }
-    });
+                if (key && value) {
+                  metadata[key] = value;
+                }
+              }
+            });
 
             // Add submission
             allSubmissions.push({
